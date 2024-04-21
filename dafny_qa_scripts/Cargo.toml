@@ -1,0 +1,9 @@
+[package]
+name = "dafny-bench"
+
+[dependencies]
+wait-timeout = "0.2"
+
+[[bin]]
+name = "check_files"
+path = "check_files.rs"

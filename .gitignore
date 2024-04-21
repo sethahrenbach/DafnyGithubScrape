@@ -1,1 +1,7 @@
 github_scrape_scripts/github_config.py
+
+dafny_qa_scripts/check_files
+dafny_qa_scripts/Cargo.lock
+dafny_qa_scripts/aggregated_lines.txt
+dafny_qa_scripts/failed_files_chunk_*
+dafny_qa_scripts/target/*

@@ -1,13 +1,13 @@
 use std::process::{Command, Stdio};
-use std::io::{Write, Read}; // Ensure Read is imported
-use std::fs; // Correctly import the filesystem module
+use std::io::{Write, Read}; 
+use std::fs; 
 extern crate wait_timeout;
-use wait_timeout::ChildExt; // Correctly reference the extension trait for Child
+use wait_timeout::ChildExt;
 use std::time::Duration;
 
 fn run_dafny_verification(file_paths: Vec<String>, start_index: usize, chunk_size: usize) -> Vec<(String, String)> {
     let mut failed_files = Vec::new();
-    let timeout = Duration::from_secs(400); // Set an appropriate timeout
+    let timeout = Duration::from_secs(400); 
 
     for file_path in file_paths.iter().skip(start_index).take(chunk_size) {
         println!("Starting verification for: {}", file_path);
@@ -42,7 +42,6 @@ fn main() {
     let directory = "../compilable";
     let mut file_paths = Vec::new();
 
-    // Read and collect file paths
     if let Ok(entries) = fs::read_dir(directory) {
         for entry in entries.flatten() {
             if let Some(file_name) = entry.file_name().to_str() {
@@ -56,14 +55,11 @@ fn main() {
     // Sort the file paths alphabetically
     file_paths.sort();
 
-    // Define the chunk size
     let chunk_size = 20;
 
-    // Process the files in chunks
     for start_index in (0..file_paths.len()).step_by(chunk_size) {
         let failed_files = run_dafny_verification(file_paths.clone(), start_index, chunk_size);
 
-        // Write the results to a file
         let output_file_path = format!("failed_files_chunk_{}.txt", start_index / chunk_size + 1);
         let mut output_file = fs::File::create(&output_file_path).expect("Failed to create output file");
         for (failed_file, error_message) in failed_files {

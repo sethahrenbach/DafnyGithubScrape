@@ -9,6 +9,7 @@ method calcC(n: nat) returns (res: nat)
 {
     var i := 0;
     res := 1;
+  
   assert res == C(i) && 0 <= i <= n;
     while i < n 
         decreases n - i //a - loop variant

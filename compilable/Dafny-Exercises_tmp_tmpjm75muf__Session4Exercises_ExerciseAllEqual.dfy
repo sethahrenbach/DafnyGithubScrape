@@ -43,20 +43,22 @@ ensures (allEqual(s) <== forall i::0<=i<|s|-1 ==> s[i]==s[i+1])
 
 
 
-method mallEqual1(v:array<int>) returns (b:bool)
-ensures b==allEqual(v[0..v.Length])
+method mallEqual1(v:array<int>) returns (b':bool)
+ensures b'==allEqual(v[0..v.Length])
 {
     var i := 0;
-    b := true;
+    var b := true;
     while (i < v.Length && b) 
 	   invariant 0 <= i <= v.Length
      invariant b==allEqual(v[..i])
 	   decreases v.Length - i
 	  { 
-       b:=(v[i]==v[0]);
-       i := i+1;
+      i := i+1;
+
+      b:=(v[i-1]==v[0]);
     
 	  }
+    b' := b;
 }
 
 method mallEqual2(v:array<int>) returns (b:bool)

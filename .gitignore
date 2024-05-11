@@ -4,3 +4,5 @@ dafny_qa_scripts/check_files
 dafny_qa_scripts/Cargo.lock
 dafny_qa_scripts/failed_files_chunk_*
 dafny_qa_scripts/target/*
+
+compilable/BitwiseOr.dfy

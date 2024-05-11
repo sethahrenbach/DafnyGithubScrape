@@ -212,7 +212,7 @@ lemma expPlus1_Lemma(x:int,n:nat)
             (x + 1) * exp(x+1,n-1);
             >= {
                expPlus1_Lemma(x, n-1);
-               //assert exp(x+1,n-1) >= exp(x,n-1) + 1; HI
+               assert exp(x+1,n-1) >= exp(x,n-1) + 1; //HI
 
                //assert exp(x+1,n-1) >= exp(x,n-1) + 1; // HI
                //aquí se necesitaría tambien prod_lemma,
